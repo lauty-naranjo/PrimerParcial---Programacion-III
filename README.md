@@ -38,7 +38,7 @@ Las cinco vistas conviven en `index.html` y se navegan con anclas. El enrutador 
 
 - Estructura semántica con `header`, `nav`, `main`, secciones, formularios y tablas.
 - Navegación entre las cinco vistas y enlace «Saltar al contenido».
-- Maqueta completa del catálogo con seis libros de ejemplo y filtro visual por título.
+- Maqueta completa del catálogo con seis libros de ejemplo y buscador por título; el filtrado se activa con JavaScript.
 - Formularios de alta de libros, clientes y ventas con validación nativa del navegador.
 - Tablas de libros, clientes, renglones de venta, historial y detalle, con `caption` y encabezados `th`.
 - Resumen de venta de ejemplo: 2 × 1500 + 1 × 2000 = 5000.
@@ -123,4 +123,4 @@ No se utilizan imágenes externas. Si en etapas posteriores se incorporan recurs
 
 ## Nota sobre esta etapa
 
-Las cinco vistas son una maqueta navegable con datos de ejemplo. La validación de los campos es la nativa del navegador; los botones de alta, el agregado de renglones, la confirmación de ventas y el historial todavía no modifican datos. La próxima etapa incorpora `js/data.js`, `js/store.js`, `js/utils.js` y el render dinámico para completar los Ejercicios 3 a 6.
+Las cinco vistas son una maqueta navegable con datos de ejemplo. La validación de los campos es la nativa del navegador; el filtro por título, los botones de alta, el agregado de renglones, la confirmación de ventas y el historial todavía no modifican datos. La próxima etapa incorpora `js/data.js`, `js/store.js`, `js/utils.js` y el render dinámico para completar los Ejercicios 3 a 6.

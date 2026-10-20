@@ -45,15 +45,17 @@ Actualizar esta sección en cada PR.
 
 - Rama por defecto: `master`.
 - Commit base: `985f8b9` — estructura inicial y README esqueleto.
-- `master` actual: `0e4822b` — AGENTS.md con reglas y estado inicial.
-- Rama de esta etapa: `feat/presentacion-css` (sin fusionar todavía).
+- `master` antes del merge de esta entrega: `0e4822b` — AGENTS.md con reglas y estado inicial.
+- Rama de esta etapa: `feat/presentacion-css`, aprobada; se fusiona con merge commit en esta entrega.
 - Commits de esta etapa:
   - `68ef727` — `feat(ui): maqueta completa e identidad visual` (`index.html`, `css/base.css`).
   - `856834c` — `feat(css): layout adaptable con flexbox y grid` (`css/layout.css`).
   - `b44367a` — `feat(css): componentes, tablas y accesibilidad visual` (`css/components.css`).
+  - `78de881` — `docs: estado de la entrega y próximo paso` (`AGENTS.md`, `README.md`).
+  - Ajustes previos al merge: `docs(etapa1): precisa alcance de la maqueta y estado del proyecto` y `fix(a11y): retira aria-current fijo de la navegación`.
 - Existe: maqueta completa de las cinco vistas en `index.html`; tres hojas CSS externas; datos de ejemplo estáticos; formularios con validación nativa; tablas con `caption`, `th` y scroll interno; foco visible, enlace de salto y diseño adaptable a 320 px y 1280 px; `README.md` con estado y comprobaciones.
-- Funciona: navegación por anclas, validación nativa, presentación responsive, recorrido por teclado y desplazamiento interno de tablas.
-- No existe todavía: `js/`, persistencia, altas, ventas, historial dinámico ni router por hash.
+- Funciona: navegación por anclas, validación nativa, presentación responsive, recorrido por teclado y desplazamiento interno de tablas. El buscador está maquetado; su filtrado se activa con JavaScript.
+- No existe todavía: `js/`, persistencia, altas, ventas, historial dinámico ni router por hash. La navegación por hash y `aria-current` se resuelven en esa etapa.
 - Próximo paso: rama `feat/datos-formularios` de Lautaro con `js/data.js`, `js/store.js` y `js/utils.js`; después integrar `js/app.js`, `js/catalog.js`, `js/books.js`, `js/clients.js`, `js/sales.js` y `js/history.js`.
 
 ## Contrato de IDs
