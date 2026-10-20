@@ -5,46 +5,505 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Librería — Programación III</title>
   <meta name="description" content="Trabajo práctico integrador de frontend para una librería, desarrollado con HTML, CSS y JavaScript nativos.">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
-  <header>
-    <h1>Librería</h1>
-    <nav aria-label="Navegación principal">
-      <ul>
-        <li><a href="#catalogo" aria-current="page">Catálogo</a></li>
-        <li><a href="#libros">Libros</a></li>
-        <li><a href="#clientes">Clientes</a></li>
-        <li><a href="#ventas">Ventas</a></li>
-        <li><a href="#historial">Historial</a></li>
-      </ul>
-    </nav>
+  <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <div class="contenedor cabecera__interior">
+      <div class="cabecera__marca">
+        <h1 class="cabecera__titulo">Librería</h1>
+        <p class="cabecera__detalle">Programación III</p>
+      </div>
+      <nav class="nav-principal" aria-label="Navegación principal">
+        <ul class="nav-principal__lista">
+          <li><a class="nav-principal__enlace" href="#catalogo" aria-current="page">Catálogo</a></li>
+          <li><a class="nav-principal__enlace" href="#libros">Libros</a></li>
+          <li><a class="nav-principal__enlace" href="#clientes">Clientes</a></li>
+          <li><a class="nav-principal__enlace" href="#ventas">Ventas</a></li>
+          <li><a class="nav-principal__enlace" href="#historial">Historial</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main id="contenido">
-    <section id="catalogo" aria-labelledby="catalogo-titulo">
-      <h2 id="catalogo-titulo">Catálogo</h2>
-      <p>No hay libros para mostrar.</p>
-    </section>
+  <div class="contenedor">
+    <p class="aviso-maqueta" id="aviso-maqueta" role="note">
+      <strong>Etapa 1:</strong> estas pantallas son una maqueta con datos de ejemplo. Funcionan la navegación por anclas y la validación nativa de los campos; las altas, las ventas, el historial y la persistencia se activan con JavaScript en la próxima etapa.
+    </p>
+  </div>
 
-    <section id="libros" aria-labelledby="libros-titulo">
-      <h2 id="libros-titulo">Libros</h2>
-      <p>No hay libros registrados.</p>
-    </section>
+  <main class="contenido" id="contenido" tabindex="-1">
+    <div class="contenedor">
+      <section class="vista" id="catalogo" aria-labelledby="catalogo-titulo">
+        <div class="vista__encabezado">
+          <p class="vista__sobretitulo">Librería</p>
+          <h2 id="catalogo-titulo">Catálogo</h2>
+          <p class="vista__descripcion">Libros disponibles. Buscá por título para acotar el listado.</p>
+        </div>
 
-    <section id="clientes" aria-labelledby="clientes-titulo">
-      <h2 id="clientes-titulo">Clientes</h2>
-      <p>No hay clientes registrados.</p>
-    </section>
+        <form class="buscador" id="form-busqueda" role="search" aria-describedby="aviso-maqueta">
+          <div class="campo">
+            <label class="campo__etiqueta" for="busqueda-titulo">Buscar por título</label>
+            <input class="campo__control" id="busqueda-titulo" name="busqueda" type="search" placeholder="Ej.: jardín" autocomplete="off">
+          </div>
+          <button class="boton boton--primario" id="boton-buscar" type="submit">Buscar</button>
+        </form>
 
-    <section id="ventas" aria-labelledby="ventas-titulo">
-      <h2 id="ventas-titulo">Ventas</h2>
-      <p>Todavía no se agregaron renglones a la venta.</p>
-    </section>
+        <p class="mensaje mensaje--vacio" id="catalogo-vacio" hidden>No hay libros para mostrar.</p>
+        <p class="mensaje mensaje--aviso" id="catalogo-sin-resultados" role="status" hidden>No se encontraron libros con ese título.</p>
 
-    <section id="historial" aria-labelledby="historial-titulo">
-      <h2 id="historial-titulo">Historial</h2>
-      <p>No hay ventas registradas.</p>
-    </section>
+        <ul class="rejilla-libros" id="catalogo-lista" aria-label="Libros del catálogo">
+          <li class="tarjeta libro">
+            <div class="libro__lomo" aria-hidden="true"></div>
+            <div class="libro__cuerpo">
+              <p class="insignia">Narrativa</p>
+              <h3 class="libro__titulo">El jardín de las horas</h3>
+              <dl class="libro__datos">
+                <div><dt>ISBN</dt><dd>978-950-01-0001-1</dd></div>
+                <div><dt>Editorial</dt><dd>Ediciones del Sur</dd></div>
+                <div><dt>Autores</dt><dd>Ana Belén Ríos</dd></div>
+              </dl>
+              <p class="libro__precio">$ 1.500,00</p>
+            </div>
+          </li>
+          <li class="tarjeta libro">
+            <div class="libro__lomo" aria-hidden="true"></div>
+            <div class="libro__cuerpo">
+              <p class="insignia">Narrativa</p>
+              <h3 class="libro__titulo">Cartas del sur</h3>
+              <dl class="libro__datos">
+                <div><dt>ISBN</dt><dd>978-950-01-0002-8</dd></div>
+                <div><dt>Editorial</dt><dd>Editorial Horizonte</dd></div>
+                <div><dt>Autores</dt><dd>Carlos Medina, Lucía Ferrer</dd></div>
+              </dl>
+              <p class="libro__precio">$ 1.500,00</p>
+            </div>
+          </li>
+          <li class="tarjeta libro">
+            <div class="libro__lomo" aria-hidden="true"></div>
+            <div class="libro__cuerpo">
+              <p class="insignia">Narrativa</p>
+              <h3 class="libro__titulo">La memoria del río</h3>
+              <dl class="libro__datos">
+                <div><dt>ISBN</dt><dd>978-950-01-0003-5</dd></div>
+                <div><dt>Editorial</dt><dd>Ediciones del Sur</dd></div>
+                <div><dt>Autores</dt><dd>Ana Belén Ríos</dd></div>
+              </dl>
+              <p class="libro__precio">$ 2.000,00</p>
+            </div>
+          </li>
+          <li class="tarjeta libro">
+            <div class="libro__lomo" aria-hidden="true"></div>
+            <div class="libro__cuerpo">
+              <p class="insignia">Ensayo</p>
+              <h3 class="libro__titulo">Oficio de mirar</h3>
+              <dl class="libro__datos">
+                <div><dt>ISBN</dt><dd>978-950-01-0004-2</dd></div>
+                <div><dt>Editorial</dt><dd>Editorial Horizonte</dd></div>
+                <div><dt>Autores</dt><dd>Carlos Medina</dd></div>
+              </dl>
+              <p class="libro__precio">$ 1.800,00</p>
+            </div>
+          </li>
+          <li class="tarjeta libro">
+            <div class="libro__lomo" aria-hidden="true"></div>
+            <div class="libro__cuerpo">
+              <p class="insignia insignia--sin">Sin clasificar</p>
+              <h3 class="libro__titulo">Manual del lector</h3>
+              <dl class="libro__datos">
+                <div><dt>ISBN</dt><dd>978-950-01-0005-9</dd></div>
+                <div><dt>Editorial</dt><dd>Ediciones del Sur</dd></div>
+                <div><dt>Autores</dt><dd>Lucía Ferrer</dd></div>
+              </dl>
+              <p class="libro__precio">$ 2.500,00</p>
+            </div>
+          </li>
+          <li class="tarjeta libro">
+            <div class="libro__lomo" aria-hidden="true"></div>
+            <div class="libro__cuerpo">
+              <p class="insignia">Narrativa</p>
+              <h3 class="libro__titulo">Voces del patio</h3>
+              <dl class="libro__datos">
+                <div><dt>ISBN</dt><dd>978-950-01-0006-6</dd></div>
+                <div><dt>Editorial</dt><dd>Editorial Horizonte</dd></div>
+                <div><dt>Autores</dt><dd>Ana Belén Ríos, Carlos Medina</dd></div>
+              </dl>
+              <p class="libro__precio">$ 1.200,00</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="vista" id="libros" aria-labelledby="libros-titulo">
+        <div class="vista__encabezado">
+          <p class="vista__sobretitulo">Altas</p>
+          <h2 id="libros-titulo">Libros</h2>
+          <p class="vista__descripcion">Registrá un libro y consultá el listado completo.</p>
+        </div>
+
+        <div class="disposicion-alta">
+          <form class="formulario" id="form-libro" aria-describedby="aviso-maqueta">
+            <h3 class="formulario__titulo">Alta de libro</h3>
+            <div class="formulario__rejilla">
+              <div class="campo">
+                <label class="campo__etiqueta" for="libro-titulo">Título <span class="campo__obligatorio">(obligatorio)</span></label>
+                <input class="campo__control" id="libro-titulo" name="titulo" type="text" autocomplete="off" required>
+              </div>
+              <div class="campo">
+                <label class="campo__etiqueta" for="libro-isbn">ISBN <span class="campo__obligatorio">(obligatorio)</span></label>
+                <input class="campo__control" id="libro-isbn" name="isbn" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" aria-describedby="libro-isbn-ayuda" required>
+                <p class="campo__ayuda" id="libro-isbn-ayuda">Se compara sin espacios ni guiones.</p>
+              </div>
+              <div class="campo">
+                <label class="campo__etiqueta" for="libro-precio">Precio <span class="campo__obligatorio">(obligatorio)</span></label>
+                <input class="campo__control" id="libro-precio" name="precio" type="number" min="0.01" step="0.01" inputmode="decimal" required>
+              </div>
+              <div class="campo">
+                <label class="campo__etiqueta" for="libro-editorial">Editorial <span class="campo__obligatorio">(obligatoria)</span></label>
+                <select class="campo__control" id="libro-editorial" name="editorial" required>
+                  <option value="">Seleccioná una editorial</option>
+                  <option value="ed1">Ediciones del Sur</option>
+                  <option value="ed2">Editorial Horizonte</option>
+                </select>
+              </div>
+              <div class="campo">
+                <label class="campo__etiqueta" for="libro-genero">Género</label>
+                <select class="campo__control" id="libro-genero" name="genero">
+                  <option value="">Sin clasificar</option>
+                  <option value="g1">Narrativa</option>
+                  <option value="g2">Ensayo</option>
+                </select>
+                <p class="campo__ayuda">Opcional.</p>
+              </div>
+              <fieldset class="campo campo--grupo campo--ancho">
+                <legend class="campo__etiqueta">Autores <span class="campo__obligatorio">(al menos uno)</span></legend>
+                <div class="opciones">
+                  <label class="opcion"><input type="checkbox" name="autores" value="a1"> Ana Belén Ríos</label>
+                  <label class="opcion"><input type="checkbox" name="autores" value="a2"> Carlos Medina</label>
+                  <label class="opcion"><input type="checkbox" name="autores" value="a3"> Lucía Ferrer</label>
+                </div>
+              </fieldset>
+            </div>
+            <p class="mensaje mensaje--error" id="libro-mensaje" role="alert" hidden>Error: revisá los datos del libro.</p>
+            <div class="formulario__acciones">
+              <button class="boton boton--primario" id="libro-registrar" type="submit">Registrar libro</button>
+              <button class="boton boton--secundario" id="libro-limpiar" type="reset">Limpiar formulario</button>
+            </div>
+          </form>
+
+          <div class="panel">
+            <h3 class="panel__titulo">Libros registrados</h3>
+            <div class="tabla-contenedor" role="region" aria-labelledby="libros-tabla-titulo" tabindex="0">
+              <table class="tabla" id="tabla-libros">
+                <caption class="tabla__titulo" id="libros-tabla-titulo">Listado de libros</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Título</th>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Editorial</th>
+                    <th scope="col">Género</th>
+                    <th scope="col">Autores</th>
+                    <th scope="col" class="tabla__numero">Precio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>El jardín de las horas</td>
+                    <td>978-950-01-0001-1</td>
+                    <td>Ediciones del Sur</td>
+                    <td>Narrativa</td>
+                    <td>Ana Belén Ríos</td>
+                    <td class="tabla__numero">$ 1.500,00</td>
+                  </tr>
+                  <tr>
+                    <td>Cartas del sur</td>
+                    <td>978-950-01-0002-8</td>
+                    <td>Editorial Horizonte</td>
+                    <td>Narrativa</td>
+                    <td>Carlos Medina, Lucía Ferrer</td>
+                    <td class="tabla__numero">$ 1.500,00</td>
+                  </tr>
+                  <tr>
+                    <td>La memoria del río</td>
+                    <td>978-950-01-0003-5</td>
+                    <td>Ediciones del Sur</td>
+                    <td>Narrativa</td>
+                    <td>Ana Belén Ríos</td>
+                    <td class="tabla__numero">$ 2.000,00</td>
+                  </tr>
+                  <tr>
+                    <td>Oficio de mirar</td>
+                    <td>978-950-01-0004-2</td>
+                    <td>Editorial Horizonte</td>
+                    <td>Ensayo</td>
+                    <td>Carlos Medina</td>
+                    <td class="tabla__numero">$ 1.800,00</td>
+                  </tr>
+                  <tr>
+                    <td>Manual del lector</td>
+                    <td>978-950-01-0005-9</td>
+                    <td>Ediciones del Sur</td>
+                    <td>Sin clasificar</td>
+                    <td>Lucía Ferrer</td>
+                    <td class="tabla__numero">$ 2.500,00</td>
+                  </tr>
+                  <tr>
+                    <td>Voces del patio</td>
+                    <td>978-950-01-0006-6</td>
+                    <td>Editorial Horizonte</td>
+                    <td>Narrativa</td>
+                    <td>Ana Belén Ríos, Carlos Medina</td>
+                    <td class="tabla__numero">$ 1.200,00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="mensaje mensaje--vacio" id="libros-vacio" hidden>No hay libros registrados.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="vista" id="clientes" aria-labelledby="clientes-titulo">
+        <div class="vista__encabezado">
+          <p class="vista__sobretitulo">Altas</p>
+          <h2 id="clientes-titulo">Clientes</h2>
+          <p class="vista__descripcion">Registrá un cliente y consultá el listado completo.</p>
+        </div>
+
+        <div class="disposicion-alta">
+          <form class="formulario" id="form-cliente" aria-describedby="aviso-maqueta">
+            <h3 class="formulario__titulo">Alta de cliente</h3>
+            <div class="formulario__rejilla">
+              <div class="campo campo--ancho">
+                <label class="campo__etiqueta" for="cliente-nombre">Nombre completo <span class="campo__obligatorio">(obligatorio)</span></label>
+                <input class="campo__control" id="cliente-nombre" name="nombre" type="text" autocomplete="name" required>
+              </div>
+              <div class="campo campo--ancho">
+                <label class="campo__etiqueta" for="cliente-email">Email <span class="campo__obligatorio">(obligatorio)</span></label>
+                <input class="campo__control" id="cliente-email" name="email" type="email" autocomplete="email" aria-describedby="cliente-email-ayuda" required>
+                <p class="campo__ayuda" id="cliente-email-ayuda">Se compara sin espacios exteriores y sin distinguir mayúsculas.</p>
+              </div>
+            </div>
+            <p class="mensaje mensaje--error" id="cliente-mensaje" role="alert" hidden>Error: revisá el nombre y el email.</p>
+            <div class="formulario__acciones">
+              <button class="boton boton--primario" id="cliente-registrar" type="submit">Registrar cliente</button>
+              <button class="boton boton--secundario" id="cliente-limpiar" type="reset">Limpiar formulario</button>
+            </div>
+          </form>
+
+          <div class="panel">
+            <h3 class="panel__titulo">Clientes registrados</h3>
+            <div class="tabla-contenedor" role="region" aria-labelledby="clientes-tabla-titulo" tabindex="0">
+              <table class="tabla" id="tabla-clientes">
+                <caption class="tabla__titulo" id="clientes-tabla-titulo">Listado de clientes</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre completo</th>
+                    <th scope="col">Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>María González</td>
+                    <td>maria.gonzalez@example.com</td>
+                  </tr>
+                  <tr>
+                    <td>Jorge Ramírez</td>
+                    <td>jorge.ramirez@example.com</td>
+                  </tr>
+                  <tr>
+                    <td>Sofía Herrera</td>
+                    <td>sofia.herrera@example.com</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="mensaje mensaje--vacio" id="clientes-vacio" hidden>No hay clientes registrados.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="vista" id="ventas" aria-labelledby="ventas-titulo">
+        <div class="vista__encabezado">
+          <p class="vista__sobretitulo">Operaciones</p>
+          <h2 id="ventas-titulo">Ventas</h2>
+          <p class="vista__descripcion">Seleccioná un cliente, agregá renglones y revisá el resumen antes de confirmar.</p>
+        </div>
+
+        <div class="disposicion-venta">
+          <form class="formulario" id="form-venta" aria-describedby="aviso-maqueta">
+            <h3 class="formulario__titulo">Nueva venta</h3>
+            <div class="campo">
+              <label class="campo__etiqueta" for="venta-cliente">Cliente <span class="campo__obligatorio">(obligatorio)</span></label>
+              <select class="campo__control" id="venta-cliente" name="cliente" required>
+                <option value="">Seleccioná un cliente</option>
+                <option value="c1" selected>María González</option>
+                <option value="c2">Jorge Ramírez</option>
+                <option value="c3">Sofía Herrera</option>
+              </select>
+            </div>
+
+            <div class="formulario__renglon">
+              <div class="campo">
+                <label class="campo__etiqueta" for="venta-libro">Libro <span class="campo__obligatorio">(obligatorio)</span></label>
+                <select class="campo__control" id="venta-libro" name="libro" required>
+                  <option value="">Seleccioná un libro</option>
+                  <option value="l1" selected>El jardín de las horas</option>
+                  <option value="l2">Cartas del sur</option>
+                  <option value="l3">La memoria del río</option>
+                  <option value="l4">Oficio de mirar</option>
+                  <option value="l5">Manual del lector</option>
+                  <option value="l6">Voces del patio</option>
+                </select>
+              </div>
+              <div class="campo">
+                <label class="campo__etiqueta" for="venta-cantidad">Cantidad <span class="campo__obligatorio">(obligatoria)</span></label>
+                <input class="campo__control" id="venta-cantidad" name="cantidad" type="number" min="1" step="1" value="1" inputmode="numeric" required>
+              </div>
+              <button class="boton boton--secundario" id="venta-agregar" type="submit">Agregar renglón</button>
+            </div>
+
+            <p class="mensaje mensaje--error" id="venta-mensaje" role="alert" hidden>Error: revisá el cliente, el libro y la cantidad.</p>
+
+            <h4 class="formulario__subtitulo">Renglones de la venta</h4>
+            <div class="tabla-contenedor" role="region" aria-labelledby="renglones-tabla-titulo" tabindex="0">
+              <table class="tabla" id="tabla-renglones">
+                <caption class="tabla__titulo" id="renglones-tabla-titulo">Renglones cargados</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Libro</th>
+                    <th scope="col" class="tabla__numero">Cantidad</th>
+                    <th scope="col" class="tabla__numero">Precio unitario</th>
+                    <th scope="col" class="tabla__numero">Subtotal</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>El jardín de las horas</td>
+                    <td class="tabla__numero">2</td>
+                    <td class="tabla__numero">$ 1.500,00</td>
+                    <td class="tabla__numero">$ 3.000,00</td>
+                    <td>
+                      <div class="tabla__acciones">
+                        <button class="boton boton--secundario boton--chico" type="button">Editar<span class="visualmente-oculto"> la cantidad de El jardín de las horas</span></button>
+                        <button class="boton boton--peligro boton--chico" type="button">Quitar<span class="visualmente-oculto"> El jardín de las horas de la venta</span></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>La memoria del río</td>
+                    <td class="tabla__numero">1</td>
+                    <td class="tabla__numero">$ 2.000,00</td>
+                    <td class="tabla__numero">$ 2.000,00</td>
+                    <td>
+                      <div class="tabla__acciones">
+                        <button class="boton boton--secundario boton--chico" type="button">Editar<span class="visualmente-oculto"> la cantidad de La memoria del río</span></button>
+                        <button class="boton boton--peligro boton--chico" type="button">Quitar<span class="visualmente-oculto"> La memoria del río de la venta</span></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="mensaje mensaje--vacio" id="venta-vacio" hidden>Todavía no se agregaron renglones a la venta.</p>
+          </form>
+
+          <aside class="resumen" aria-labelledby="resumen-titulo">
+            <h3 class="resumen__titulo" id="resumen-titulo">Resumen de la venta</h3>
+            <dl class="resumen__lista">
+              <div class="resumen__fila">
+                <dt>Artículos</dt>
+                <dd>3</dd>
+              </div>
+              <div class="resumen__fila">
+                <dt>Subtotal</dt>
+                <dd id="venta-subtotal">$ 5.000,00</dd>
+              </div>
+              <div class="resumen__fila resumen__fila--total">
+                <dt>Total</dt>
+                <dd id="venta-total">$ 5.000,00</dd>
+              </div>
+            </dl>
+            <button class="boton boton--primario boton--bloque" id="venta-confirmar" type="button">Confirmar venta</button>
+            <p class="mensaje mensaje--exito" id="venta-confirmada" role="status" hidden>Listo: la venta se registró correctamente.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="vista" id="historial" aria-labelledby="historial-titulo">
+        <div class="vista__encabezado">
+          <p class="vista__sobretitulo">Consultas</p>
+          <h2 id="historial-titulo">Historial</h2>
+          <p class="vista__descripcion">Ventas confirmadas y acceso al detalle de cada una.</p>
+        </div>
+
+        <div class="tabla-contenedor" role="region" aria-labelledby="historial-tabla-titulo" tabindex="0">
+          <table class="tabla" id="tabla-historial">
+            <caption class="tabla__titulo" id="historial-tabla-titulo">Ventas registradas</caption>
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Cliente</th>
+                <th scope="col" class="tabla__numero">Total</th>
+                <th scope="col">Detalle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>V-0001</td>
+                <td><time datetime="2026-10-20">20/10/2026</time></td>
+                <td>María González</td>
+                <td class="tabla__numero">$ 5.000,00</td>
+                <td><button class="boton boton--secundario boton--chico" type="button">Ver detalle<span class="visualmente-oculto"> de la venta V-0001</span></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mensaje mensaje--vacio" id="historial-vacio" hidden>No hay ventas registradas.</p>
+
+        <section class="detalle" id="detalle-venta" aria-labelledby="detalle-titulo">
+          <div class="detalle__encabezado">
+            <p class="vista__sobretitulo">Detalle</p>
+            <h3 id="detalle-titulo">Venta V-0001</h3>
+            <p class="detalle__meta"><time datetime="2026-10-20">20/10/2026</time> · María González</p>
+          </div>
+          <div class="tabla-contenedor" role="region" aria-labelledby="detalle-tabla-titulo" tabindex="0">
+            <table class="tabla" id="detalle-renglones">
+              <caption class="tabla__titulo" id="detalle-tabla-titulo">Renglones de la venta V-0001</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Libro</th>
+                  <th scope="col" class="tabla__numero">Cantidad</th>
+                  <th scope="col" class="tabla__numero">Precio unitario</th>
+                  <th scope="col" class="tabla__numero">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>El jardín de las horas</td>
+                  <td class="tabla__numero">2</td>
+                  <td class="tabla__numero">$ 1.500,00</td>
+                  <td class="tabla__numero">$ 3.000,00</td>
+                </tr>
+                <tr>
+                  <td>La memoria del río</td>
+                  <td class="tabla__numero">1</td>
+                  <td class="tabla__numero">$ 2.000,00</td>
+                  <td class="tabla__numero">$ 2.000,00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="detalle__total">Total: <span id="detalle-total">$ 5.000,00</span></p>
+        </section>
+      </section>
+    </div>
   </main>
 </body>
 </html>
