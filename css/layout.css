@@ -1,0 +1,243 @@
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-contenedor);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+.cabecera {
+  background-color: var(--color-superficie);
+  border-bottom: 1px solid var(--color-borde-suave);
+}
+
+.cabecera__interior {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+  padding-block: var(--espacio-4);
+}
+
+.cabecera__marca {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-1);
+}
+
+.cabecera__titulo {
+  font-size: clamp(1.9rem, 1.4rem + 2.2vw, 2.6rem);
+  letter-spacing: -0.01em;
+}
+
+.cabecera__detalle {
+  color: var(--color-tinta-suave);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.nav-principal__lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+}
+
+.nav-principal__enlace {
+  display: inline-block;
+  padding: var(--espacio-2) var(--espacio-3);
+  border: 1px solid transparent;
+  border-radius: var(--radio-pastilla);
+  color: var(--color-tinta);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav-principal__enlace:hover {
+  background-color: var(--color-superficie-alt);
+  color: var(--color-primario-oscuro);
+}
+
+.nav-principal__enlace[aria-current="page"] {
+  background-color: var(--color-primario);
+  color: #ffffff;
+}
+
+.nav-principal__enlace[aria-current="page"]:hover {
+  background-color: var(--color-primario-oscuro);
+  color: #ffffff;
+}
+
+.contenido {
+  padding-block: clamp(1.5rem, 4vw, 2.5rem) var(--espacio-8);
+}
+
+.contenido:focus {
+  outline: none;
+}
+
+.vista {
+  padding-block: clamp(2rem, 5vw, 3.5rem);
+  border-top: 1px solid var(--color-borde-suave);
+  scroll-margin-top: 1rem;
+}
+
+.vista:first-of-type {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.vista__encabezado {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+  max-width: 70ch;
+  margin-bottom: var(--espacio-5);
+}
+
+.vista__sobretitulo {
+  color: var(--color-acento);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.vista h2 {
+  font-size: clamp(1.6rem, 1.3rem + 1.4vw, 2.1rem);
+}
+
+.vista__descripcion {
+  color: var(--color-tinta-suave);
+}
+
+.buscador {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+  max-width: 44rem;
+  margin-bottom: var(--espacio-5);
+}
+
+.rejilla-libros {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: var(--espacio-4);
+}
+
+.disposicion-alta,
+.disposicion-venta {
+  display: grid;
+  gap: var(--espacio-5);
+}
+
+.formulario__rejilla,
+.formulario__renglon {
+  display: grid;
+  gap: var(--espacio-4);
+}
+
+.formulario__renglon {
+  gap: var(--espacio-3);
+}
+
+.formulario__renglon .boton {
+  width: 100%;
+}
+
+.formulario__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-3);
+}
+
+.formulario__acciones .boton {
+  flex: 1 1 12rem;
+}
+
+.tabla-contenedor {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  contain: paint;
+  border: 1px solid var(--color-borde-suave);
+  border-radius: var(--radio);
+  background-color: var(--color-superficie);
+}
+
+.tabla-contenedor:focus-visible {
+  outline: 3px solid var(--color-foco);
+  outline-offset: 2px;
+}
+
+.detalle {
+  margin-top: var(--espacio-5);
+}
+
+@media (min-width: 40rem) {
+  .buscador {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .buscador .campo {
+    flex: 1;
+  }
+
+  .buscador .boton {
+    flex: none;
+  }
+}
+
+@media (min-width: 48rem) {
+  .cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 1px 0 rgb(27 31 28 / 0.04);
+  }
+
+  .cabecera__interior {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .vista {
+    scroll-margin-top: 6.5rem;
+  }
+
+  .formulario__rejilla {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .campo--ancho {
+    grid-column: 1 / -1;
+  }
+
+  .formulario__renglon {
+    grid-template-columns: minmax(0, 1fr) 8.5rem auto;
+    align-items: end;
+  }
+
+  .formulario__renglon .boton {
+    width: auto;
+  }
+}
+
+@media (min-width: 64rem) {
+  .disposicion-alta {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    align-items: start;
+  }
+
+  .disposicion-venta {
+    grid-template-columns: minmax(0, 1.6fr) minmax(17rem, 1fr);
+    align-items: start;
+  }
+
+  .disposicion-venta .resumen {
+    position: sticky;
+    top: 7rem;
+  }
+}
