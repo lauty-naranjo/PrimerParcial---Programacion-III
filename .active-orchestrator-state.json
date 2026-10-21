@@ -1,0 +1,70 @@
+{
+  "version": 4,
+  "step": "complete",
+  "owner": "active-orchestrator",
+  "discovery": {
+    "skipped": true,
+    "reason": "La consigna cerrada de catedra define el alcance; el producto ya esta implementado y verificado. Investigacion de mercado/competencia no aporta."
+  },
+  "kb": {
+    "created_by": "kb-creator",
+    "source": "ingest",
+    "discovery": {
+      "system_type": "frontend estatico de una sola pagina, sin backend",
+      "domain": "educacion / libreria (trabajo practico academico)",
+      "scale": "prototipo academico, decenas de registros por entidad",
+      "stack": ["HTML5", "CSS3", "JavaScript nativo ES2020+", "localStorage"],
+      "needs_infra": false,
+      "problem": "Presentar un catalogo de libreria y registrar libros, clientes y ventas simuladas en el navegador, cumpliendo la consigna de Programacion III."
+    },
+    "files": [
+      "knowledge-base/README.md",
+      "knowledge-base/01_vision_y_objetivos.md",
+      "knowledge-base/02_descripcion_general.md",
+      "knowledge-base/03_actores_y_roles.md",
+      "knowledge-base/04_modelo_de_datos.md",
+      "knowledge-base/05_reglas_de_negocio.md",
+      "knowledge-base/06_funcionalidades.md",
+      "knowledge-base/07_flujos_principales.md",
+      "knowledge-base/08_arquitectura_propuesta.md",
+      "knowledge-base/09_decisiones_y_supuestos.md",
+      "knowledge-base/10_preguntas_abiertas.md"
+    ]
+  },
+  "roadmap": {
+    "file": "CHANGES.md",
+    "changes": ["baseline-tpi-libreria", "ajustes-entrega-tpi"],
+    "both_archived": true
+  },
+  "registry": {
+    "file": ".atl/skill-registry.md",
+    "find_skill_skipped": true
+  },
+  "agents": {
+    "file": "AGENTS.md",
+    "created": true
+  },
+  "openspec": {
+    "schema": "spec-driven",
+    "language": "es",
+    "specs": [
+      "altas",
+      "catalogo",
+      "contrato-tecnico",
+      "documentacion-de-entrega",
+      "interfaz-y-navegacion",
+      "persistencia",
+      "presentacion-adaptable",
+      "ventas-e-historial"
+    ],
+    "archived_changes": [
+      "2026-10-21-baseline-tpi-libreria",
+      "2026-10-21-ajustes-entrega-tpi"
+    ]
+  },
+  "delivery": {
+    "command": "git archive --format=zip -o tpi-libreria.zip HEAD",
+    "package_contents": ["index.html", "css/", "js/", "README.md"],
+    "gitattributes": ".gitattributes"
+  }
+}
