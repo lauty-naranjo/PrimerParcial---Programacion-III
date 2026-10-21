@@ -58,22 +58,18 @@
   color: var(--color-primario-oscuro);
 }
 
-.nav-principal__enlace[aria-current="page"] {
+.nav-principal__enlace[aria-current] {
   background-color: var(--color-primario);
-  color: #ffffff;
+  color: var(--color-texto-inverso);
 }
 
-.nav-principal__enlace[aria-current="page"]:hover {
+.nav-principal__enlace[aria-current]:hover {
   background-color: var(--color-primario-oscuro);
-  color: #ffffff;
+  color: var(--color-texto-inverso);
 }
 
 .contenido {
   padding-block: clamp(1.5rem, 4vw, 2.5rem) var(--espacio-8);
-}
-
-.contenido:focus {
-  outline: none;
 }
 
 .vista {

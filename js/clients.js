@@ -6,7 +6,6 @@
 
   let refs = null;
   let iniciado = false;
-  let primeraCargaVenta = true;
 
   function crearCelda(texto) {
     const celda = document.createElement('td');
@@ -16,7 +15,10 @@
 
   function crearFilaCliente(cliente) {
     const fila = document.createElement('tr');
-    fila.append(crearCelda(cliente.nombre), crearCelda(cliente.email));
+    const email = crearCelda(cliente.email);
+    email.className = 'tabla__email';
+
+    fila.append(crearCelda(cliente.nombre), email);
     return fila;
   }
 
@@ -44,13 +46,6 @@
       'Seleccioná un cliente',
       valorPrevio
     );
-
-    if (primeraCargaVenta) {
-      if (opciones.length > 0) {
-        refs.ventaCliente.value = opciones[0].valor;
-      }
-      primeraCargaVenta = false;
-    }
   }
 
   function refrescar() {
@@ -169,6 +164,7 @@
       nombre: resultado.valores.nombre,
       email: resultado.valores.email
     });
+    Libreria.store.guardarClientes();
 
     refrescar();
     refs.form.reset();

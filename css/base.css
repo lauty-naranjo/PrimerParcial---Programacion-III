@@ -20,6 +20,10 @@
   --color-borde: #9a8f7c;
   --color-borde-suave: #ddd5c6;
   --color-foco: #0b4f6c;
+  --color-texto-inverso: #ffffff;
+  --color-control: #ffffff;
+  --color-superficie-alterna: #fbf8f1;
+  --color-papel-calido: #fffaf0;
   --fuente-titulos: Georgia, "Times New Roman", serif;
   --fuente-base: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --espacio-1: 0.25rem;
@@ -56,7 +60,7 @@ body {
   line-height: 1.6;
   color: var(--color-tinta);
   background-color: var(--color-papel);
-  background-image: radial-gradient(circle at top left, #fffaf0 0, transparent 45rem);
+  background-image: radial-gradient(circle at top left, var(--color-papel-calido) 0, transparent 45rem);
   background-repeat: no-repeat;
 }
 
@@ -128,7 +132,7 @@ textarea {
   padding: var(--espacio-3) var(--espacio-4);
   border-radius: 0 0 var(--radio-chico) var(--radio-chico);
   background-color: var(--color-primario);
-  color: #ffffff;
+  color: var(--color-texto-inverso);
   font-weight: 600;
   text-decoration: none;
 }
@@ -158,5 +162,10 @@ textarea {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .tarjeta:hover,
+  .boton:active {
+    transform: none;
   }
 }

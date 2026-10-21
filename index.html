@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
@@ -30,12 +30,6 @@
     </div>
   </header>
 
-  <div class="contenedor">
-    <p class="aviso-maqueta" id="aviso-maqueta" role="note">
-      <strong>Altas activas:</strong> el catálogo y las tablas de libros y clientes se generan desde <code>js/data.js</code>. Ya funcionan las altas con validación, el filtro por título y la actualización de los selectores de venta. Las ventas, el historial y la persistencia se activan en las próximas etapas.
-    </p>
-  </div>
-
   <main class="contenido" id="contenido" tabindex="-1">
     <div class="contenedor">
       <section class="vista" id="catalogo" aria-labelledby="catalogo-titulo">
@@ -45,7 +39,7 @@
           <p class="vista__descripcion">Libros disponibles. Buscá por título para acotar el listado.</p>
         </div>
 
-        <form class="buscador" id="form-busqueda" role="search" aria-describedby="aviso-maqueta">
+        <form class="buscador" id="form-busqueda" role="search">
           <div class="campo">
             <label class="campo__etiqueta" for="busqueda-titulo">Buscar por título</label>
             <input class="campo__control" id="busqueda-titulo" name="busqueda" type="search" placeholder="Ej.: jardín" autocomplete="off">
@@ -53,7 +47,7 @@
           <button class="boton boton--primario" id="boton-buscar" type="submit">Buscar</button>
         </form>
 
-        <p class="mensaje mensaje--vacio" id="catalogo-vacio" hidden>No hay libros para mostrar.</p>
+        <p class="mensaje mensaje--vacio" id="catalogo-vacio" role="status" hidden>No hay libros para mostrar.</p>
         <p class="mensaje mensaje--aviso" id="catalogo-sin-resultados" role="status" hidden>No se encontraron libros con ese título.</p>
 
         <ul class="rejilla-libros" id="catalogo-lista" aria-label="Libros del catálogo"></ul>
@@ -67,7 +61,7 @@
         </div>
 
         <div class="disposicion-alta">
-          <form class="formulario" id="form-libro" aria-describedby="aviso-maqueta" novalidate>
+          <form class="formulario" id="form-libro" novalidate>
             <h3 class="formulario__titulo">Alta de libro</h3>
             <div class="formulario__rejilla">
               <div class="campo">
@@ -117,9 +111,9 @@
 
           <div class="panel">
             <h3 class="panel__titulo">Libros registrados</h3>
-            <div class="tabla-contenedor" role="region" aria-labelledby="libros-tabla-titulo" tabindex="0">
+            <section class="tabla-contenedor" aria-labelledby="libros-tabla-titulo" tabindex="0">
               <table class="tabla" id="tabla-libros">
-                <caption class="tabla__titulo" id="libros-tabla-titulo">Listado de libros</caption>
+                <caption class="tabla__titulo visualmente-oculto" id="libros-tabla-titulo">Listado de libros</caption>
                 <thead>
                   <tr>
                     <th scope="col">Título</th>
@@ -132,8 +126,8 @@
                 </thead>
                 <tbody></tbody>
               </table>
-            </div>
-            <p class="mensaje mensaje--vacio" id="libros-vacio" hidden>No hay libros registrados.</p>
+            </section>
+            <p class="mensaje mensaje--vacio" id="libros-vacio" role="status" hidden>No hay libros registrados.</p>
           </div>
         </div>
       </section>
@@ -146,7 +140,7 @@
         </div>
 
         <div class="disposicion-alta">
-          <form class="formulario" id="form-cliente" aria-describedby="aviso-maqueta" novalidate>
+          <form class="formulario" id="form-cliente" novalidate>
             <h3 class="formulario__titulo">Alta de cliente</h3>
             <div class="formulario__rejilla">
               <div class="campo campo--ancho">
@@ -171,9 +165,9 @@
 
           <div class="panel">
             <h3 class="panel__titulo">Clientes registrados</h3>
-            <div class="tabla-contenedor" role="region" aria-labelledby="clientes-tabla-titulo" tabindex="0">
-              <table class="tabla" id="tabla-clientes">
-                <caption class="tabla__titulo" id="clientes-tabla-titulo">Listado de clientes</caption>
+            <section class="tabla-contenedor" aria-labelledby="clientes-tabla-titulo" tabindex="0">
+              <table class="tabla tabla--angosta" id="tabla-clientes">
+                <caption class="tabla__titulo visualmente-oculto" id="clientes-tabla-titulo">Listado de clientes</caption>
                 <thead>
                   <tr>
                     <th scope="col">Nombre completo</th>
@@ -182,8 +176,8 @@
                 </thead>
                 <tbody></tbody>
               </table>
-            </div>
-            <p class="mensaje mensaje--vacio" id="clientes-vacio" hidden>No hay clientes registrados.</p>
+            </section>
+            <p class="mensaje mensaje--vacio" id="clientes-vacio" role="status" hidden>No hay clientes registrados.</p>
           </div>
         </div>
       </section>
@@ -196,7 +190,7 @@
         </div>
 
         <div class="disposicion-venta">
-          <form class="formulario" id="form-venta" aria-describedby="aviso-maqueta">
+          <form class="formulario" id="form-venta" novalidate>
             <h3 class="formulario__titulo">Nueva venta</h3>
             <div class="campo">
               <label class="campo__etiqueta" for="venta-cliente">Cliente <span class="campo__obligatorio">(obligatorio)</span></label>
@@ -222,9 +216,9 @@
             <p class="mensaje mensaje--error" id="venta-mensaje" role="alert" hidden>Error: revisá el cliente, el libro y la cantidad.</p>
 
             <h4 class="formulario__subtitulo">Renglones de la venta</h4>
-            <div class="tabla-contenedor" role="region" aria-labelledby="renglones-tabla-titulo" tabindex="0">
+            <section class="tabla-contenedor" aria-labelledby="renglones-tabla-titulo" tabindex="0">
               <table class="tabla" id="tabla-renglones">
-                <caption class="tabla__titulo" id="renglones-tabla-titulo">Renglones cargados</caption>
+                <caption class="tabla__titulo visualmente-oculto" id="renglones-tabla-titulo">Renglones cargados</caption>
                 <thead>
                   <tr>
                     <th scope="col">Libro</th>
@@ -234,35 +228,10 @@
                     <th scope="col">Acciones</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>El jardín de las horas</td>
-                    <td class="tabla__numero">2</td>
-                    <td class="tabla__numero">$ 1.500,00</td>
-                    <td class="tabla__numero">$ 3.000,00</td>
-                    <td>
-                      <div class="tabla__acciones">
-                        <button class="boton boton--secundario boton--chico" type="button">Editar<span class="visualmente-oculto"> la cantidad de El jardín de las horas</span></button>
-                        <button class="boton boton--peligro boton--chico" type="button">Quitar<span class="visualmente-oculto"> El jardín de las horas de la venta</span></button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>La memoria del río</td>
-                    <td class="tabla__numero">1</td>
-                    <td class="tabla__numero">$ 2.000,00</td>
-                    <td class="tabla__numero">$ 2.000,00</td>
-                    <td>
-                      <div class="tabla__acciones">
-                        <button class="boton boton--secundario boton--chico" type="button">Editar<span class="visualmente-oculto"> la cantidad de La memoria del río</span></button>
-                        <button class="boton boton--peligro boton--chico" type="button">Quitar<span class="visualmente-oculto"> La memoria del río de la venta</span></button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
+                <tbody></tbody>
               </table>
-            </div>
-            <p class="mensaje mensaje--vacio" id="venta-vacio" hidden>Todavía no se agregaron renglones a la venta.</p>
+            </section>
+            <p class="mensaje mensaje--vacio" id="venta-vacio" role="status" hidden>Todavía no se agregaron renglones a la venta.</p>
           </form>
 
           <aside class="resumen" aria-labelledby="resumen-titulo">
@@ -270,15 +239,15 @@
             <dl class="resumen__lista">
               <div class="resumen__fila">
                 <dt>Artículos</dt>
-                <dd>3</dd>
+                <dd id="venta-articulos">0</dd>
               </div>
               <div class="resumen__fila">
                 <dt>Subtotal</dt>
-                <dd id="venta-subtotal">$ 5.000,00</dd>
+                <dd id="venta-subtotal">$ 0,00</dd>
               </div>
               <div class="resumen__fila resumen__fila--total">
                 <dt>Total</dt>
-                <dd id="venta-total">$ 5.000,00</dd>
+                <dd id="venta-total" aria-live="polite">$ 0,00</dd>
               </div>
             </dl>
             <button class="boton boton--primario boton--bloque" id="venta-confirmar" type="button">Confirmar venta</button>
@@ -294,9 +263,9 @@
           <p class="vista__descripcion">Ventas confirmadas y acceso al detalle de cada una.</p>
         </div>
 
-        <div class="tabla-contenedor" role="region" aria-labelledby="historial-tabla-titulo" tabindex="0">
+        <section class="tabla-contenedor" aria-labelledby="historial-tabla-titulo" tabindex="0">
           <table class="tabla" id="tabla-historial">
-            <caption class="tabla__titulo" id="historial-tabla-titulo">Ventas registradas</caption>
+            <caption class="tabla__titulo visualmente-oculto" id="historial-tabla-titulo">Ventas registradas</caption>
             <thead>
               <tr>
                 <th scope="col">ID</th>
@@ -306,28 +275,20 @@
                 <th scope="col">Detalle</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>V-0001</td>
-                <td><time datetime="2026-10-20">20/10/2026</time></td>
-                <td>María González</td>
-                <td class="tabla__numero">$ 5.000,00</td>
-                <td><button class="boton boton--secundario boton--chico" type="button">Ver detalle<span class="visualmente-oculto"> de la venta V-0001</span></button></td>
-              </tr>
-            </tbody>
+            <tbody></tbody>
           </table>
-        </div>
-        <p class="mensaje mensaje--vacio" id="historial-vacio" hidden>No hay ventas registradas.</p>
+        </section>
+        <p class="mensaje mensaje--vacio" id="historial-vacio" role="status" hidden>No hay ventas registradas.</p>
 
-        <section class="detalle" id="detalle-venta" aria-labelledby="detalle-titulo">
+        <section class="detalle" id="detalle-venta" aria-labelledby="detalle-titulo" hidden>
           <div class="detalle__encabezado">
             <p class="vista__sobretitulo">Detalle</p>
-            <h3 id="detalle-titulo">Venta V-0001</h3>
-            <p class="detalle__meta"><time datetime="2026-10-20">20/10/2026</time> · María González</p>
+            <h3 id="detalle-titulo" tabindex="-1">Venta</h3>
+            <p class="detalle__meta" id="detalle-meta"></p>
           </div>
-          <div class="tabla-contenedor" role="region" aria-labelledby="detalle-tabla-titulo" tabindex="0">
+          <section class="tabla-contenedor" aria-labelledby="detalle-tabla-titulo" tabindex="0">
             <table class="tabla" id="detalle-renglones">
-              <caption class="tabla__titulo" id="detalle-tabla-titulo">Renglones de la venta V-0001</caption>
+              <caption class="tabla__titulo visualmente-oculto" id="detalle-tabla-titulo">Renglones de la venta</caption>
               <thead>
                 <tr>
                   <th scope="col">Libro</th>
@@ -336,23 +297,10 @@
                   <th scope="col" class="tabla__numero">Subtotal</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>El jardín de las horas</td>
-                  <td class="tabla__numero">2</td>
-                  <td class="tabla__numero">$ 1.500,00</td>
-                  <td class="tabla__numero">$ 3.000,00</td>
-                </tr>
-                <tr>
-                  <td>La memoria del río</td>
-                  <td class="tabla__numero">1</td>
-                  <td class="tabla__numero">$ 2.000,00</td>
-                  <td class="tabla__numero">$ 2.000,00</td>
-                </tr>
-              </tbody>
+              <tbody></tbody>
             </table>
-          </div>
-          <p class="detalle__total">Total: <span id="detalle-total">$ 5.000,00</span></p>
+          </section>
+          <p class="detalle__total">Total: <span id="detalle-total">$ 0,00</span></p>
         </section>
       </section>
     </div>
@@ -360,9 +308,12 @@
 
   <script src="js/data.js"></script>
   <script src="js/utils.js"></script>
+  <script src="js/store.js"></script>
   <script src="js/catalog.js"></script>
   <script src="js/books.js"></script>
   <script src="js/clients.js"></script>
+  <script src="js/sales.js"></script>
+  <script src="js/history.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
