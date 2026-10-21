@@ -11,7 +11,7 @@ Trabajo Práctico Integrador de **Programación III**, Tecnicatura Universitaria
 
 **Etapa 1 completada y Ejercicios 3, 4, 5 y 6 implementados.** La aplicación funciona abriendo `index.html` con doble clic: catálogo dinámico con filtro, altas de libros y clientes, ventas con renglones editables, historial inmutable y persistencia en `localStorage`.
 
-La verificación manual de los ocho casos del PDF se registra más abajo. No quedan funcionalidades pendientes de la consigna; resta la revisión del compañero y la integración final en `master`.
+La verificación manual de los ocho casos del PDF se registra más abajo. No quedan funcionalidades ni etapas pendientes. El trabajo está integrado en `master`.
 
 ## Cómo abrir el proyecto
 
@@ -70,7 +70,7 @@ Las cinco vistas conviven en `index.html` y se navegan con anclas. El router por
 
 ### Pendientes
 
-- Revisión del compañero y merge con `master` según el flujo del equipo.
+No hay funcionalidades pendientes de la consigna.
 
 El PDF no exige editar ni eliminar libros o clientes: el Ejercicio 4 solo pide altas. Los únicos botones de quitar son los de renglones de una venta antes de confirmar.
 
@@ -174,7 +174,7 @@ Estas comprobaciones se ejecutaron el 21/10/2026 con Chrome, abriendo `index.htm
 
 ## Casos manuales
 
-Ningún caso se registra como aprobado sin haberlo ejecutado. Los ocho casos se ejecutaron sobre la versión de esta rama.
+Ningún caso se registra como aprobado sin haberlo ejecutado. Los ocho casos se ejecutaron sobre la versión final.
 
 | # | Caso | Resultado esperado | Resultado observado |
 | --- | --- | --- | --- |
@@ -193,4 +193,4 @@ No se utilizan imágenes externas ni recursos gráficos ajenos. Si en etapas pos
 
 ## Nota sobre esta etapa
 
-La aplicación completa el alcance funcional del PDF: datos locales, catálogo y filtro, altas validadas, venta simulada, historial inmutable y persistencia. El detalle de una venta se genera desde la copia histórica guardada al confirmar, no desde el precio actual del catálogo. El README y `AGENTS.md` deben mantenerse actualizados si se modifica el contrato de IDs o el flujo de datos.
+La aplicación completa el alcance funcional del PDF: datos locales, catálogo y filtro, altas validadas, venta simulada, historial inmutable y persistencia. El detalle de una venta se genera desde la copia histórica guardada al confirmar, no desde el precio actual del catálogo. El README debe mantenerse actualizado si se modifica el contrato de IDs o el flujo de datos.
