@@ -348,7 +348,7 @@
         return;
       }
 
-      const precioUnitario = Libreria.utils.redondearCentavos(libro.precio);
+      const precioUnitario = Libreria.utils.redondearCentavos(renglon.precioUnitario);
       const subtotal = calcularSubtotal(renglon.cantidad, precioUnitario);
 
       renglonesVenta.push({
