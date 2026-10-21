@@ -44,19 +44,25 @@ README.md
 Actualizar esta sección en cada PR.
 
 - Rama por defecto: `master`.
-- Commit base: `985f8b9` — estructura inicial y README esqueleto.
-- `master` antes del merge de esta entrega: `0e4822b` — AGENTS.md con reglas y estado inicial.
-- Rama de esta etapa: `feat/presentacion-css`, aprobada; se fusiona con merge commit en esta entrega.
-- Commits de esta etapa:
-  - `68ef727` — `feat(ui): maqueta completa e identidad visual` (`index.html`, `css/base.css`).
-  - `856834c` — `feat(css): layout adaptable con flexbox y grid` (`css/layout.css`).
-  - `b44367a` — `feat(css): componentes, tablas y accesibilidad visual` (`css/components.css`).
-  - `78de881` — `docs: estado de la entrega y próximo paso` (`AGENTS.md`, `README.md`).
-  - Ajustes previos al merge: `docs(etapa1): precisa alcance de la maqueta y estado del proyecto` y `fix(a11y): retira aria-current fijo de la navegación`.
-- Existe: maqueta completa de las cinco vistas en `index.html`; tres hojas CSS externas; datos de ejemplo estáticos; formularios con validación nativa; tablas con `caption`, `th` y scroll interno; foco visible, enlace de salto y diseño adaptable a 320 px y 1280 px; `README.md` con estado y comprobaciones.
-- Funciona: navegación por anclas, validación nativa, presentación responsive, recorrido por teclado y desplazamiento interno de tablas. El buscador está maquetado; su filtrado se activa con JavaScript.
-- No existe todavía: `js/`, persistencia, altas, ventas, historial dinámico ni router por hash. La navegación por hash y `aria-current` se resuelven en esa etapa.
-- Próximo paso: rama `feat/datos-formularios` de Lautaro con `js/data.js`, `js/store.js` y `js/utils.js`; después integrar `js/app.js`, `js/catalog.js`, `js/books.js`, `js/clients.js`, `js/sales.js` y `js/history.js`.
+- Etapa 1 fusionada con merge commit `8d9daee` (maqueta y presentación).
+- Commits de la Etapa 1: `68ef727`, `856834c`, `b44367a`, `78de881`, `8b6060c` y `7dcc880`.
+- Rama de esta etapa: `feat/datos-catalogo`, verificada y aprobada.
+- Commits de esta etapa: `0a668c2` (datos), `4018268` (utils), `be4e79e` (catálogo) y el commit de documentación de cierre.
+- Integración: merge `--no-ff` a `master` y push de `master` y `feat/datos-catalogo`.
+- Cambios de esta etapa: `js/data.js`, `js/utils.js`, `js/catalog.js`, `js/app.js`, `index.html`, `README.md` y `AGENTS.md`.
+- Existe: catálogo dinámico generado desde `js/data.js`; semillas de libros, editoriales, géneros, autores y clientes; filtro por título con estados de vacío y sin resultados; tres hojas CSS externas; formularios con validación nativa; tablas estáticas de libros, clientes, venta e historial.
+- Funciona: navegación por anclas, catálogo y filtro, validación nativa, presentación responsive, recorrido por teclado y desplazamiento interno de tablas. El caso manual 1 del PDF está aprobado.
+- Verificación en navegador: sin errores de JavaScript ni de consola; 320 px (`scrollWidth = clientWidth = 305`) y 1280 px (`1265`) sin scroll horizontal; catálogo en una y tres columnas; tabla con `scrollLeft` de 0 a 120 a 320 px.
+- No existe todavía: `js/store.js`, persistencia, altas, ventas, historial dinámico ni router por hash.
+- Próximo paso: consigna 4 con `js/books.js` y `js/clients.js`: render de las tablas de libros y clientes, generación de selectores y validaciones de alta. `js/store.js` y `localStorage` quedan para la consigna 6.
+
+## Convención JavaScript
+
+- Scripts clásicos, sin módulos ES. Orden de carga: `data.js`, `utils.js`, `catalog.js`, `app.js`; los módulos de cada entidad se agregan después de `catalog.js`.
+- Un único namespace `window.Libreria`; cada archivo se envuelve en una IIFE con `'use strict'`.
+- `Libreria.datos` contiene las semillas; `Libreria.utils` las funciones compartidas; cada módulo expone `iniciar()`.
+- Render con `createElement`, `textContent`, `DocumentFragment` y `replaceChildren`; nunca `innerHTML` con datos.
+- `js/app.js` orquesta el arranque en `DOMContentLoaded`.
 
 ## Contrato de IDs
 
@@ -90,5 +96,5 @@ Mantener estos `id` al integrar JavaScript. Si se renombra uno, actualizar el JS
 
 - Los ocho casos manuales del PDF se ejecutan de verdad y se registran en el `README.md` con el resultado observado. Ningún caso se marca aprobado sin ejecutarlo.
 - Comprobar consola sin errores, navegación por teclado, foco visible y ausencia de scroll horizontal a 320 px y 1280 px.
-- En esta etapa se ejecutaron las comprobaciones de presentación del `README.md` (320 px, 1280 px, teclado, foco, tablas y auditoría del HTML). Los casos funcionales 1 a 7 y el flujo completo del caso 8 siguen pendientes hasta integrar JavaScript.
+- En esta etapa se ejecutaron las comprobaciones de presentación del `README.md` (320 px, 1280 px, teclado, foco, tablas y auditoría del HTML) y el caso manual 1; no hubo errores de JavaScript ni de consola. Los casos 2 a 7 y el flujo funcional completo del caso 8 siguen pendientes hasta integrar las altas, ventas y persistencia.
 - Repetir estas comprobaciones después de cada integración y antes de cada PR.
