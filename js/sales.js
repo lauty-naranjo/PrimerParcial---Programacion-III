@@ -63,7 +63,6 @@
     }, 0);
 
     refs.articulos.textContent = String(articulos);
-    refs.subtotal.textContent = Libreria.utils.formatearPrecio(total);
     refs.total.textContent = Libreria.utils.formatearPrecio(total);
   }
 
@@ -430,7 +429,6 @@
       cuerpo: document.querySelector('#tabla-renglones tbody'),
       vacio: document.getElementById('venta-vacio'),
       articulos: document.getElementById('venta-articulos'),
-      subtotal: document.getElementById('venta-subtotal'),
       total: document.getElementById('venta-total'),
       confirmar: document.getElementById('venta-confirmar'),
       confirmada: document.getElementById('venta-confirmada')
