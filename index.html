@@ -32,7 +32,7 @@
 
   <div class="contenedor">
     <p class="aviso-maqueta" id="aviso-maqueta" role="note">
-      <strong>Etapa 1:</strong> estas pantallas son una maqueta con datos de ejemplo. Funcionan la navegación por anclas y la validación nativa de los campos; el filtro por título, las altas, las ventas, el historial y la persistencia se activan con JavaScript en la próxima etapa.
+      <strong>Etapa 2:</strong> el catálogo se genera desde <code>js/data.js</code> y el filtro por título ya funciona; también la navegación por anclas y la validación nativa. Las altas, las ventas, el historial y la persistencia se activan en las próximas etapas; las tablas de libros y clientes siguen mostrando datos de ejemplo.
     </p>
   </div>
 
@@ -56,86 +56,7 @@
         <p class="mensaje mensaje--vacio" id="catalogo-vacio" hidden>No hay libros para mostrar.</p>
         <p class="mensaje mensaje--aviso" id="catalogo-sin-resultados" role="status" hidden>No se encontraron libros con ese título.</p>
 
-        <ul class="rejilla-libros" id="catalogo-lista" aria-label="Libros del catálogo">
-          <li class="tarjeta libro">
-            <div class="libro__lomo" aria-hidden="true"></div>
-            <div class="libro__cuerpo">
-              <p class="insignia">Narrativa</p>
-              <h3 class="libro__titulo">El jardín de las horas</h3>
-              <dl class="libro__datos">
-                <div><dt>ISBN</dt><dd>978-950-01-0001-1</dd></div>
-                <div><dt>Editorial</dt><dd>Ediciones del Sur</dd></div>
-                <div><dt>Autores</dt><dd>Ana Belén Ríos</dd></div>
-              </dl>
-              <p class="libro__precio">$ 1.500,00</p>
-            </div>
-          </li>
-          <li class="tarjeta libro">
-            <div class="libro__lomo" aria-hidden="true"></div>
-            <div class="libro__cuerpo">
-              <p class="insignia">Narrativa</p>
-              <h3 class="libro__titulo">Cartas del sur</h3>
-              <dl class="libro__datos">
-                <div><dt>ISBN</dt><dd>978-950-01-0002-8</dd></div>
-                <div><dt>Editorial</dt><dd>Editorial Horizonte</dd></div>
-                <div><dt>Autores</dt><dd>Carlos Medina, Lucía Ferrer</dd></div>
-              </dl>
-              <p class="libro__precio">$ 1.500,00</p>
-            </div>
-          </li>
-          <li class="tarjeta libro">
-            <div class="libro__lomo" aria-hidden="true"></div>
-            <div class="libro__cuerpo">
-              <p class="insignia">Narrativa</p>
-              <h3 class="libro__titulo">La memoria del río</h3>
-              <dl class="libro__datos">
-                <div><dt>ISBN</dt><dd>978-950-01-0003-5</dd></div>
-                <div><dt>Editorial</dt><dd>Ediciones del Sur</dd></div>
-                <div><dt>Autores</dt><dd>Ana Belén Ríos</dd></div>
-              </dl>
-              <p class="libro__precio">$ 2.000,00</p>
-            </div>
-          </li>
-          <li class="tarjeta libro">
-            <div class="libro__lomo" aria-hidden="true"></div>
-            <div class="libro__cuerpo">
-              <p class="insignia">Ensayo</p>
-              <h3 class="libro__titulo">Oficio de mirar</h3>
-              <dl class="libro__datos">
-                <div><dt>ISBN</dt><dd>978-950-01-0004-2</dd></div>
-                <div><dt>Editorial</dt><dd>Editorial Horizonte</dd></div>
-                <div><dt>Autores</dt><dd>Carlos Medina</dd></div>
-              </dl>
-              <p class="libro__precio">$ 1.800,00</p>
-            </div>
-          </li>
-          <li class="tarjeta libro">
-            <div class="libro__lomo" aria-hidden="true"></div>
-            <div class="libro__cuerpo">
-              <p class="insignia insignia--sin">Sin clasificar</p>
-              <h3 class="libro__titulo">Manual del lector</h3>
-              <dl class="libro__datos">
-                <div><dt>ISBN</dt><dd>978-950-01-0005-9</dd></div>
-                <div><dt>Editorial</dt><dd>Ediciones del Sur</dd></div>
-                <div><dt>Autores</dt><dd>Lucía Ferrer</dd></div>
-              </dl>
-              <p class="libro__precio">$ 2.500,00</p>
-            </div>
-          </li>
-          <li class="tarjeta libro">
-            <div class="libro__lomo" aria-hidden="true"></div>
-            <div class="libro__cuerpo">
-              <p class="insignia">Narrativa</p>
-              <h3 class="libro__titulo">Voces del patio</h3>
-              <dl class="libro__datos">
-                <div><dt>ISBN</dt><dd>978-950-01-0006-6</dd></div>
-                <div><dt>Editorial</dt><dd>Editorial Horizonte</dd></div>
-                <div><dt>Autores</dt><dd>Ana Belén Ríos, Carlos Medina</dd></div>
-              </dl>
-              <p class="libro__precio">$ 1.200,00</p>
-            </div>
-          </li>
-        </ul>
+        <ul class="rejilla-libros" id="catalogo-lista" aria-label="Libros del catálogo"></ul>
       </section>
 
       <section class="vista" id="libros" aria-labelledby="libros-titulo">
@@ -505,5 +426,10 @@
       </section>
     </div>
   </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
