@@ -10,7 +10,6 @@
   let generosPorId = null;
   let autoresPorId = null;
   let iniciado = false;
-  let primeraCargaVenta = true;
 
   function crearCelda(texto, esNumero) {
     const celda = document.createElement('td');
@@ -129,13 +128,6 @@
       'Seleccioná un libro',
       valorPrevio
     );
-
-    if (primeraCargaVenta) {
-      if (opciones.length > 0) {
-        refs.ventaLibro.value = opciones[0].valor;
-      }
-      primeraCargaVenta = false;
-    }
   }
 
   function refrescar() {
@@ -349,6 +341,7 @@
       generoId: resultado.valores.generoId,
       autorIds: resultado.valores.autorIds
     });
+    Libreria.store.guardarLibros();
 
     refrescar();
     Libreria.catalogo.refrescar();

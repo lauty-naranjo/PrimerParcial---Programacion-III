@@ -39,6 +39,24 @@
     return '$ ' + formatoPrecio.format(Number.isFinite(centavos) ? centavos : 0);
   }
 
+  function fechaLocalISO(fecha) {
+    const valor = fecha instanceof Date ? fecha : new Date();
+    const anio = String(valor.getFullYear());
+    const mes = String(valor.getMonth() + 1).padStart(2, '0');
+    const dia = String(valor.getDate()).padStart(2, '0');
+    return anio + '-' + mes + '-' + dia;
+  }
+
+  function formatearFecha(fechaISO) {
+    const partes = String(fechaISO || '').split('-');
+
+    if (partes.length !== 3) {
+      return '';
+    }
+
+    return partes[2] + '/' + partes[1] + '/' + partes[0];
+  }
+
   function indexarPorId(lista) {
     const indice = new Map();
     lista.forEach(function (item) {
@@ -107,6 +125,8 @@
     esEmailValido: esEmailValido,
     redondearCentavos: redondearCentavos,
     formatearPrecio: formatearPrecio,
+    fechaLocalISO: fechaLocalISO,
+    formatearFecha: formatearFecha,
     indexarPorId: indexarPorId,
     generarId: generarId,
     poblarSelect: poblarSelect
