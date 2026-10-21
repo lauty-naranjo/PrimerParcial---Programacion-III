@@ -1,0 +1,4 @@
+schema: spec-driven
+created: 2026-10-21
+goal: Dejar el estado as-built bajo especificacion con evidencia de los 8 casos
+  del PDF
