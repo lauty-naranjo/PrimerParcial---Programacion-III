@@ -2,7 +2,7 @@
   'use strict';
 
   const Libreria = (window.Libreria = window.Libreria || {});
-  const TEXTO_SIN_GENERO = 'Sin clasificar';
+  const TEXTO_SIN_GENERO = Libreria.utils.TEXTO_SIN_GENERO;
 
   let refs = null;
   let editorialesPorId = null;

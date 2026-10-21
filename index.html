@@ -32,7 +32,7 @@
 
   <div class="contenedor">
     <p class="aviso-maqueta" id="aviso-maqueta" role="note">
-      <strong>Etapa 2:</strong> el catálogo se genera desde <code>js/data.js</code> y el filtro por título ya funciona; también la navegación por anclas y la validación nativa. Las altas, las ventas, el historial y la persistencia se activan en las próximas etapas; las tablas de libros y clientes siguen mostrando datos de ejemplo.
+      <strong>Altas activas:</strong> el catálogo y las tablas de libros y clientes se generan desde <code>js/data.js</code>. Ya funcionan las altas con validación, el filtro por título y la actualización de los selectores de venta. Las ventas, el historial y la persistencia se activan en las próximas etapas.
     </p>
   </div>
 
@@ -67,49 +67,48 @@
         </div>
 
         <div class="disposicion-alta">
-          <form class="formulario" id="form-libro" aria-describedby="aviso-maqueta">
+          <form class="formulario" id="form-libro" aria-describedby="aviso-maqueta" novalidate>
             <h3 class="formulario__titulo">Alta de libro</h3>
             <div class="formulario__rejilla">
               <div class="campo">
                 <label class="campo__etiqueta" for="libro-titulo">Título <span class="campo__obligatorio">(obligatorio)</span></label>
-                <input class="campo__control" id="libro-titulo" name="titulo" type="text" autocomplete="off" required>
+                <input class="campo__control" id="libro-titulo" name="titulo" type="text" autocomplete="off" aria-describedby="libro-titulo-error" required>
+                <p class="campo__error" id="libro-titulo-error" hidden></p>
               </div>
               <div class="campo">
                 <label class="campo__etiqueta" for="libro-isbn">ISBN <span class="campo__obligatorio">(obligatorio)</span></label>
-                <input class="campo__control" id="libro-isbn" name="isbn" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" aria-describedby="libro-isbn-ayuda" required>
+                <input class="campo__control" id="libro-isbn" name="isbn" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" aria-describedby="libro-isbn-ayuda libro-isbn-error" required>
                 <p class="campo__ayuda" id="libro-isbn-ayuda">Se compara sin espacios ni guiones.</p>
+                <p class="campo__error" id="libro-isbn-error" hidden></p>
               </div>
               <div class="campo">
                 <label class="campo__etiqueta" for="libro-precio">Precio <span class="campo__obligatorio">(obligatorio)</span></label>
-                <input class="campo__control" id="libro-precio" name="precio" type="number" min="0.01" step="0.01" inputmode="decimal" required>
+                <input class="campo__control" id="libro-precio" name="precio" type="number" min="0.01" step="0.01" inputmode="decimal" aria-describedby="libro-precio-error" required>
+                <p class="campo__error" id="libro-precio-error" hidden></p>
               </div>
               <div class="campo">
                 <label class="campo__etiqueta" for="libro-editorial">Editorial <span class="campo__obligatorio">(obligatoria)</span></label>
-                <select class="campo__control" id="libro-editorial" name="editorial" required>
+                <select class="campo__control" id="libro-editorial" name="editorial" aria-describedby="libro-editorial-error" required>
                   <option value="">Seleccioná una editorial</option>
-                  <option value="ed1">Ediciones del Sur</option>
-                  <option value="ed2">Editorial Horizonte</option>
                 </select>
+                <p class="campo__error" id="libro-editorial-error" hidden></p>
               </div>
               <div class="campo">
                 <label class="campo__etiqueta" for="libro-genero">Género</label>
-                <select class="campo__control" id="libro-genero" name="genero">
+                <select class="campo__control" id="libro-genero" name="genero" aria-describedby="libro-genero-error">
                   <option value="">Sin clasificar</option>
-                  <option value="g1">Narrativa</option>
-                  <option value="g2">Ensayo</option>
                 </select>
                 <p class="campo__ayuda">Opcional.</p>
+                <p class="campo__error" id="libro-genero-error" hidden></p>
               </div>
-              <fieldset class="campo campo--grupo campo--ancho">
+              <fieldset class="campo campo--grupo campo--ancho" aria-describedby="libro-autores-error">
                 <legend class="campo__etiqueta">Autores <span class="campo__obligatorio">(al menos uno)</span></legend>
-                <div class="opciones">
-                  <label class="opcion"><input type="checkbox" name="autores" value="a1"> Ana Belén Ríos</label>
-                  <label class="opcion"><input type="checkbox" name="autores" value="a2"> Carlos Medina</label>
-                  <label class="opcion"><input type="checkbox" name="autores" value="a3"> Lucía Ferrer</label>
-                </div>
+                <div class="opciones" id="libro-autores"></div>
+                <p class="campo__error" id="libro-autores-error" hidden></p>
               </fieldset>
             </div>
-            <p class="mensaje mensaje--error" id="libro-mensaje" role="alert" hidden>Error: revisá los datos del libro.</p>
+            <p class="mensaje mensaje--error" id="libro-mensaje" role="alert" hidden>Revisá los campos marcados.</p>
+            <p class="mensaje mensaje--exito" id="libro-exito" role="status" hidden>Listo: el libro se registró correctamente.</p>
             <div class="formulario__acciones">
               <button class="boton boton--primario" id="libro-registrar" type="submit">Registrar libro</button>
               <button class="boton boton--secundario" id="libro-limpiar" type="reset">Limpiar formulario</button>
@@ -131,56 +130,7 @@
                     <th scope="col" class="tabla__numero">Precio</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>El jardín de las horas</td>
-                    <td>978-950-01-0001-1</td>
-                    <td>Ediciones del Sur</td>
-                    <td>Narrativa</td>
-                    <td>Ana Belén Ríos</td>
-                    <td class="tabla__numero">$ 1.500,00</td>
-                  </tr>
-                  <tr>
-                    <td>Cartas del sur</td>
-                    <td>978-950-01-0002-8</td>
-                    <td>Editorial Horizonte</td>
-                    <td>Narrativa</td>
-                    <td>Carlos Medina, Lucía Ferrer</td>
-                    <td class="tabla__numero">$ 1.500,00</td>
-                  </tr>
-                  <tr>
-                    <td>La memoria del río</td>
-                    <td>978-950-01-0003-5</td>
-                    <td>Ediciones del Sur</td>
-                    <td>Narrativa</td>
-                    <td>Ana Belén Ríos</td>
-                    <td class="tabla__numero">$ 2.000,00</td>
-                  </tr>
-                  <tr>
-                    <td>Oficio de mirar</td>
-                    <td>978-950-01-0004-2</td>
-                    <td>Editorial Horizonte</td>
-                    <td>Ensayo</td>
-                    <td>Carlos Medina</td>
-                    <td class="tabla__numero">$ 1.800,00</td>
-                  </tr>
-                  <tr>
-                    <td>Manual del lector</td>
-                    <td>978-950-01-0005-9</td>
-                    <td>Ediciones del Sur</td>
-                    <td>Sin clasificar</td>
-                    <td>Lucía Ferrer</td>
-                    <td class="tabla__numero">$ 2.500,00</td>
-                  </tr>
-                  <tr>
-                    <td>Voces del patio</td>
-                    <td>978-950-01-0006-6</td>
-                    <td>Editorial Horizonte</td>
-                    <td>Narrativa</td>
-                    <td>Ana Belén Ríos, Carlos Medina</td>
-                    <td class="tabla__numero">$ 1.200,00</td>
-                  </tr>
-                </tbody>
+                <tbody></tbody>
               </table>
             </div>
             <p class="mensaje mensaje--vacio" id="libros-vacio" hidden>No hay libros registrados.</p>
@@ -196,20 +146,23 @@
         </div>
 
         <div class="disposicion-alta">
-          <form class="formulario" id="form-cliente" aria-describedby="aviso-maqueta">
+          <form class="formulario" id="form-cliente" aria-describedby="aviso-maqueta" novalidate>
             <h3 class="formulario__titulo">Alta de cliente</h3>
             <div class="formulario__rejilla">
               <div class="campo campo--ancho">
                 <label class="campo__etiqueta" for="cliente-nombre">Nombre completo <span class="campo__obligatorio">(obligatorio)</span></label>
-                <input class="campo__control" id="cliente-nombre" name="nombre" type="text" autocomplete="name" required>
+                <input class="campo__control" id="cliente-nombre" name="nombre" type="text" autocomplete="name" aria-describedby="cliente-nombre-error" required>
+                <p class="campo__error" id="cliente-nombre-error" hidden></p>
               </div>
               <div class="campo campo--ancho">
                 <label class="campo__etiqueta" for="cliente-email">Email <span class="campo__obligatorio">(obligatorio)</span></label>
-                <input class="campo__control" id="cliente-email" name="email" type="email" autocomplete="email" aria-describedby="cliente-email-ayuda" required>
+                <input class="campo__control" id="cliente-email" name="email" type="email" autocomplete="email" aria-describedby="cliente-email-ayuda cliente-email-error" required>
                 <p class="campo__ayuda" id="cliente-email-ayuda">Se compara sin espacios exteriores y sin distinguir mayúsculas.</p>
+                <p class="campo__error" id="cliente-email-error" hidden></p>
               </div>
             </div>
-            <p class="mensaje mensaje--error" id="cliente-mensaje" role="alert" hidden>Error: revisá el nombre y el email.</p>
+            <p class="mensaje mensaje--error" id="cliente-mensaje" role="alert" hidden>Revisá los campos marcados.</p>
+            <p class="mensaje mensaje--exito" id="cliente-exito" role="status" hidden>Listo: el cliente se registró correctamente.</p>
             <div class="formulario__acciones">
               <button class="boton boton--primario" id="cliente-registrar" type="submit">Registrar cliente</button>
               <button class="boton boton--secundario" id="cliente-limpiar" type="reset">Limpiar formulario</button>
@@ -227,20 +180,7 @@
                     <th scope="col">Email</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>María González</td>
-                    <td>maria.gonzalez@example.com</td>
-                  </tr>
-                  <tr>
-                    <td>Jorge Ramírez</td>
-                    <td>jorge.ramirez@example.com</td>
-                  </tr>
-                  <tr>
-                    <td>Sofía Herrera</td>
-                    <td>sofia.herrera@example.com</td>
-                  </tr>
-                </tbody>
+                <tbody></tbody>
               </table>
             </div>
             <p class="mensaje mensaje--vacio" id="clientes-vacio" hidden>No hay clientes registrados.</p>
@@ -262,9 +202,6 @@
               <label class="campo__etiqueta" for="venta-cliente">Cliente <span class="campo__obligatorio">(obligatorio)</span></label>
               <select class="campo__control" id="venta-cliente" name="cliente" required>
                 <option value="">Seleccioná un cliente</option>
-                <option value="c1" selected>María González</option>
-                <option value="c2">Jorge Ramírez</option>
-                <option value="c3">Sofía Herrera</option>
               </select>
             </div>
 
@@ -273,12 +210,6 @@
                 <label class="campo__etiqueta" for="venta-libro">Libro <span class="campo__obligatorio">(obligatorio)</span></label>
                 <select class="campo__control" id="venta-libro" name="libro" required>
                   <option value="">Seleccioná un libro</option>
-                  <option value="l1" selected>El jardín de las horas</option>
-                  <option value="l2">Cartas del sur</option>
-                  <option value="l3">La memoria del río</option>
-                  <option value="l4">Oficio de mirar</option>
-                  <option value="l5">Manual del lector</option>
-                  <option value="l6">Voces del patio</option>
                 </select>
               </div>
               <div class="campo">
@@ -430,6 +361,8 @@
   <script src="js/data.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/catalog.js"></script>
+  <script src="js/books.js"></script>
+  <script src="js/clients.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

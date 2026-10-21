@@ -176,6 +176,17 @@
   font-weight: 600;
 }
 
+.campo__control[aria-invalid="true"],
+.campo__control[aria-invalid="true"]:hover,
+.campo__control[aria-invalid="true"]:focus,
+.campo--grupo[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+
+.campo--grupo .campo__error {
+  margin-top: var(--espacio-2);
+}
+
 .campo--grupo {
   display: block;
   padding: var(--espacio-3);
