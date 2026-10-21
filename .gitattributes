@@ -1,0 +1,12 @@
+# Contenido del paquete de entrega: `git archive` respeta `export-ignore`.
+# El entregable a la catedra es solo index.html, css/, js/ y README.md.
+openspec/ export-ignore
+knowledge-base/ export-ignore
+docs/ export-ignore
+.atl/ export-ignore
+.opencode/ export-ignore
+AGENTS.md export-ignore
+CHANGES.md export-ignore
+.active-orchestrator-state.json export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
