@@ -18,7 +18,7 @@
 **Documento A dice**: la consigna pide el total como suma de subtotales y no exige mostrar un subtotal general (`docs/consigna-tpi.md`, página 5).
 **Documento B dice**: `index.html` muestra «Subtotal» y «Total», ambos alimentados por la misma variable en `js/sales.js` (`actualizarResumen`).
 **Impacto**: cosmético; puede leerse como un cálculo duplicado o defectuoso.
-**Resolución propuesta**: dejar sólo «Total» (o rotular el segundo como «Total de la venta»). No bloquea la entrega.
+**Resolución**: resuelto en el change `claridad-resumen-venta` (archivado el 21/10/2026), requisito R-14. El resumen de la venta muestra sólo «Artículos» y «Total»; el subtotal se conserva por renglón, que es como lo define la consigna.
 
 ### IN-04 — El reporte de comprobaciones no distingue autoría
 **Documento A dice**: la consigna exige registrar el resultado observado de cada caso.

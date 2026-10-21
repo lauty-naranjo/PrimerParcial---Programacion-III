@@ -59,7 +59,7 @@ Las cinco vistas conviven en `index.html` y se navegan con anclas. El router por
 - Errores por campo, resumen accesible con `role="alert"`, mensajes de éxito con `role="status"` y foco en el primer campo inválido.
 - Ventas con selección de cliente y libro, cantidad entera mayor que cero y precio unitario tomado del catálogo al agregar el renglón, que se conserva sin releerlo al confirmar.
 - Renglones editables y eliminables antes de confirmar; un libro repetido actualiza la cantidad del renglón existente.
-- Cálculo de subtotal y total con redondeo a centavos y visualización de dos decimales.
+- Cálculo de subtotal por renglón y total como suma de subtotales, con redondeo a centavos y dos decimales; el resumen de la venta muestra artículos y total.
 - Confirmación bloqueada sin cliente, sin renglones o con cantidades inválidas.
 - Al confirmar se guarda identificador, fecha, cliente, renglones con título, ISBN, precio unitario y subtotal históricos, y total.
 - Historial con identificador, fecha, cliente y total; el botón «Ver detalle» muestra los renglones y el total de la venta.
@@ -199,6 +199,8 @@ Estas comprobaciones se ejecutaron el 21/10/2026 abriendo `index.html` desde el 
 | Accesibilidad generada | Los checkboxes de autores tienen `label`, `aria-describedby` válido y foco visible; los errores usan `aria-invalid` y texto asociado. |
 | Confirmación con precio capturado | Se agregó un renglón de `$ 1.500,00`, se cambió el precio del catálogo a `9999` antes de confirmar y la venta persistió `precioUnitario 1500`, subtotal `3000` y total `3000`. Se repitió con precio decreciente (2000 → 500) y con cambio de cantidad posterior (3 × 1500 = 4500). |
 | Paquete de entrega | `git archive --format=zip` produce un paquete con `index.html`, `css/`, `js/` y `README.md`; `openspec/`, `knowledge-base/`, `docs/`, `.atl/`, `AGENTS.md`, `CHANGES.md` y `.active-orchestrator-state.json` quedan excluidos por `export-ignore`. |
+| Resumen de venta | El resumen muestra sólo «Artículos» y «Total»; 3 artículos dan `$ 5.000,00` y al pasar una cantidad a 3 el total sube a `$ 6.500,00`. La columna «Subtotal» se conserva en cada renglón. |
+| Teclado y foco | El primer `Tab` enfoca «Saltar al contenido» con contorno sólido de 3 px; el segundo llega al enlace «Catálogo». |
 
 ## Casos manuales
 
