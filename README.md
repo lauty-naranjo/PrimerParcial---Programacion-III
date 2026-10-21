@@ -57,7 +57,7 @@ Las cinco vistas conviven en `index.html` y se navegan con anclas. El router por
 - Opciones de editorial, género, autores y selectores de venta generadas desde `js/data.js`; el género vacío se muestra como «Sin clasificar».
 - Actualización sin recarga de las tablas, del catálogo y de los selectores; las selecciones de venta no se preseleccionan.
 - Errores por campo, resumen accesible con `role="alert"`, mensajes de éxito con `role="status"` y foco en el primer campo inválido.
-- Ventas con selección de cliente y libro, cantidad entera mayor que cero y precio unitario tomado del catálogo.
+- Ventas con selección de cliente y libro, cantidad entera mayor que cero y precio unitario tomado del catálogo al agregar el renglón, que se conserva sin releerlo al confirmar.
 - Renglones editables y eliminables antes de confirmar; un libro repetido actualiza la cantidad del renglón existente.
 - Cálculo de subtotal y total con redondeo a centavos y visualización de dos decimales.
 - Confirmación bloqueada sin cliente, sin renglones o con cantidades inválidas.
@@ -121,7 +121,33 @@ La aplicación usa estas claves:
 - `libreria.v1.clientes`
 - `libreria.v1.ventas`
 
-Las dos primeras guardan arrays con los datos de los libros y clientes. La tercera guarda las ventas confirmadas con esta estructura:
+`libreria.v1.libros` guarda un array de libros con esta estructura:
+
+```js
+{
+  id: 'l1',
+  titulo: 'El jardín de las horas',
+  isbn: '978-950-01-0001-1',
+  precio: 1500,
+  editorialId: 'ed1',
+  generoId: 'g1',
+  autorIds: ['a1']
+}
+```
+
+| Campo | Tipo | Significado |
+| --- | --- | --- |
+| `id` | string | Identificador estable con formato `lN` |
+| `titulo` | string | Título tal como se muestra en el catálogo |
+| `isbn` | string | ISBN normalizado, sin espacios ni guiones; único dentro del catálogo |
+| `precio` | number | Precio vigente en pesos, redondeado a centavos |
+| `editorialId` | string | Referencia a una editorial del catálogo (`ed1`, `ed2`) |
+| `generoId` | string o `null` | Referencia a un género (`g1`, `g2`); `null` se muestra como «Sin clasificar» |
+| `autorIds` | string[] | Uno o más ids de autor (`a1`, `a2`, `a3`) |
+
+El campo `precio` de esta clave es el precio **vigente** del catálogo. La venta, en cambio, guarda una copia del precio unitario al momento de agregar el renglón: modificar `libreria.v1.libros` cambia el catálogo, nunca las ventas ya confirmadas.
+
+`libreria.v1.clientes` guarda un array de clientes con `id` (`cN`), `nombre` y `email`. `libreria.v1.ventas` guarda las ventas confirmadas con esta estructura:
 
 ```js
 {
@@ -151,14 +177,14 @@ Los ejemplos se cargan solo cuando la clave no existe. Al recargar se recuperan 
 
 1. Confirmar una venta y anotar el precio unitario, los subtotales y el total.
 2. Abrir las herramientas de desarrollo del navegador, pestaña **Application (Aplicación) → Local Storage**.
-3. Editar únicamente el precio de un libro dentro de `libreria.v1.libros`; no modificar ni borrar `libreria.v1.ventas`.
+3. Editar únicamente el campo `precio` del libro vendido dentro de `libreria.v1.libros`; no modificar ni borrar `libreria.v1.ventas`.
 4. Recargar la página y abrir el detalle de la venta anterior.
 
 El detalle debe conservar el precio unitario, los subtotales y el total confirmados, aunque el catálogo tenga otro precio.
 
 ## Comprobaciones realizadas
 
-Estas comprobaciones se ejecutaron el 21/10/2026 con Chrome, abriendo `index.html` desde el sistema de archivos.
+Estas comprobaciones se ejecutaron el 21/10/2026 abriendo `index.html` desde el sistema de archivos: las de comportamiento se recorrieron en Chrome 155 con un perfil temporal limpio y las de sintaxis y empaquetado con Node 20 y Git.
 
 | Comprobación | Resultado observado |
 | --- | --- |
@@ -171,6 +197,8 @@ Estas comprobaciones se ejecutaron el 21/10/2026 con Chrome, abriendo `index.htm
 | Validación | Se rechazan formularios incompletos, ISBN duplicado, email inválido o duplicado, cantidades cero, negativas o decimales y ventas sin cliente o sin renglones. |
 | Auditoría del HTML | 75 IDs únicos, 0 duplicados y 0 referencias `aria-*`/`label[for]` rotas; 5 tablas con `caption` y 22 `th`; 4 formularios, 1 fieldset y 0 opciones preseleccionadas; 0 estilos inline y 0 recursos externos. |
 | Accesibilidad generada | Los checkboxes de autores tienen `label`, `aria-describedby` válido y foco visible; los errores usan `aria-invalid` y texto asociado. |
+| Confirmación con precio capturado | Se agregó un renglón de `$ 1.500,00`, se cambió el precio del catálogo a `9999` antes de confirmar y la venta persistió `precioUnitario 1500`, subtotal `3000` y total `3000`. Se repitió con precio decreciente (2000 → 500) y con cambio de cantidad posterior (3 × 1500 = 4500). |
+| Paquete de entrega | `git archive --format=zip` produce un paquete con `index.html`, `css/`, `js/` y `README.md`; `openspec/`, `knowledge-base/`, `docs/`, `.atl/`, `AGENTS.md`, `CHANGES.md` y `.active-orchestrator-state.json` quedan excluidos por `export-ignore`. |
 
 ## Casos manuales
 
@@ -183,7 +211,7 @@ Ningún caso se registra como aprobado sin haberlo ejecutado. Los ocho casos se 
 | 3 | Alta de cliente con email inválido, email existente en mayúsculas y email nuevo | Se rechazan los dos primeros; el nuevo aparece en listado y selección | Aprobado: `lucia.example.com` se rechazó con «Ingresá un email válido.»; `MARIA.GONZALEZ@EXAMPLE.COM` se rechazó como duplicado; `Lucia.Prueba@Example.com` se guardó y agregó la fila y la opción `c4`. También se verificó con `  Espacios@Example.com  `: se guardó como `Espacios@Example.com` y el nombre perdió los espacios exteriores. |
 | 4 | Venta sin cliente, cantidad cero, negativa o decimal; libro repetido | No se confirma; el duplicado no crea otro renglón | Aprobado: sin cliente mostró «Seleccioná un cliente para confirmar la venta.» y no creó ventas; cantidades 0, -1 y 1.5 mostraron «La cantidad debe ser un número entero mayor que cero.» y no agregaron renglones; repetir el libro dejó 1 renglón con cantidad 2 y total `$ 3.000,00`. |
 | 5 | Venta válida: dos unidades a 1500 y una a 2000 | Subtotales 3000 y 2000; total 5000; detalle conservado en el historial | Aprobado: subtotales `$ 3.000,00` y `$ 2.000,00`, artículos 3, total `$ 5.000,00`; al confirmar se creó `V-0001`, el formulario quedó limpio y el historial mostró 1 venta. El detalle conservó los dos renglones y el total. |
-| 6 | Venta confirmada y cambio exclusivo del precio de catálogo guardado | Tras recargar, el precio unitario, los subtotales y el total de esa venta conservan los valores confirmados | Aprobado: se cambió `l1` de 1500 a 9999 en `libreria.v1.libros`, se recargó y el detalle siguió mostrando `$ 1.500,00`, `$ 3.000,00` y total `$ 5.000,00`. La venta guardada no se modificó. |
+| 6 | Venta confirmada y cambio exclusivo del precio de catálogo guardado | Tras recargar, el precio unitario, los subtotales y el total de esa venta conservan los valores confirmados | Aprobado: se cambió `l1` de 1500 a 9999 en `libreria.v1.libros`, se recargó y el detalle siguió mostrando `$ 1.500,00`, `$ 3.000,00` y total `$ 5.000,00`. La venta guardada no se modificó. También se cambió el precio del catálogo entre el agregado del renglón y la confirmación: la venta guardó el precio capturado al agregar y no el nuevo. |
 | 7 | Recarga después de altas y venta | Se recuperan los datos sin duplicar ejemplos ni ventas | Aprobado: antes y después de recargar se conservaron 7 libros, 4 clientes y 1 venta; las tablas y el historial mantuvieron 7, 4 y 1 filas, respectivamente, sin duplicar semillas. |
 | 8 | Navegación por teclado y anchos de 320 px y 1280 px | Foco visible, controles utilizables y tabla con desplazamiento propio si lo necesita | Aprobado: 320/320 y 1280/1280 sin scroll horizontal de página; foco visible en skip, `main`, enlaces y campos; el detalle se abre con foco en su título; las tablas se desplazan dentro de su contenedor. |
 
